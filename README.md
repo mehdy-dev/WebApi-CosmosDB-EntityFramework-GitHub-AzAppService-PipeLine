@@ -21,7 +21,7 @@ languages:
 # Porposes :
 * CI/CD simplifies development pipeline using git actions to deploy app to app service
    -> using azure app service deployment slots are recommended when pipeline triggered by git action
-* CosmoDB Entity framework to elaborate faster with data access layer
+* CosmoDB Entity framework data access layer
 * Using a seperate logic and db context when cosmodb model changes (newly container added to Cosmo DB) then seed the container with new items
    -> change the initializer db context class and update the data rather than using the dbcontext serving the api services
 * useage application initialization to create and seed new model IHostedService of Microsoft.Extensions.Hosting
