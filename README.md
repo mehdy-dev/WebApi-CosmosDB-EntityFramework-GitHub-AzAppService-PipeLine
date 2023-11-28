@@ -1,6 +1,6 @@
 ---
 page_type: sample
-description: "Automated pipeline to deploy web api FE and cosmodb BE using arm template"
+description: "Managed pipeline to deploy web api FE and cosmodb BE using arm template"
 products:
 - GitHub Actions
 - Azure Web Apps
