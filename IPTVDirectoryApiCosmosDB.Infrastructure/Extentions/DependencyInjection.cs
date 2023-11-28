@@ -16,10 +16,10 @@ namespace IPTVDirectoryApiCosmosDB.Infrastructure.Extentions
 		{
 			services.AddDbContext<ChannelContext>(options =>
 				options.UseCosmos(
-					configuration["Cosmos:AccountEndpoint"],
-					configuration["Cosmos:AccountKey"],
-					configuration["Cosmos:DatabaseName"])
-			);
+                  configuration["Cosmos__AccountEndpoint"],
+				  configuration["Cosmos__AccountKey"],
+				  configuration["Cosmos__DatabaseName"])
+            );
 			services
 				.AddScoped<IChannelRepository, ChannelRepository>();
 

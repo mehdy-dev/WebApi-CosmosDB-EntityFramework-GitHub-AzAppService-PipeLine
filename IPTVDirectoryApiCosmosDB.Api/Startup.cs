@@ -29,9 +29,9 @@ namespace IPTVDirectoryApiCosmosDB
 
             services.AddDbContext<DBInitContext>(options =>
             options.UseCosmos(
-            Configuration["Cosmos:AccountEndpoint"],
-            Configuration["Cosmos:AccountKey"],
-            Configuration["Cosmos:DatabaseName"]));
+            Configuration["Cosmos__AccountEndpoint"],
+            Configuration["Cosmos__AccountKey"],
+            Configuration["Cosmos__DatabaseName"]));
 
             services.AddSwaggerGen(c =>
             {
