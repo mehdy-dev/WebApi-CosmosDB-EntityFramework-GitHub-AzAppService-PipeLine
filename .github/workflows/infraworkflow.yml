@@ -12,7 +12,7 @@ env:
     ASP_NAME: ${{ secrets.AZURE_ASP_NAME  }}                   # for the farm to run   -> 
     CONTAINER_NAME: ${{ secrets.COSMOSDB_CONTAINER_NAME  }}                          # set this to your preferred 
     DATABASE_NAME: ${{ secrets.COSMOSDB_DB_NAME  }}                 # set this to your preferred 
-
+    DATABASE_ACCOUNT_NAME: ${{ secrets.COSMOSDB_DB_ACCOUNT_NAME  }} 
 
 permissions:
   id-token: write
@@ -50,6 +50,6 @@ jobs:
           resourceGroupName: ${{env.AZURE_RESOURCEGROUP_NAME}}
           region: westeurope # Set this to your target region
           template: repo/templates/azuredeploy.json  # Set this to the location of your template file
-          parameters: repo/templates/azuredeploy.parameters.json  webappName=${{env.AZURE_WEBAPP_NAME}} aspName=${{env.ASP_NAME}} databaseName=${{env.DATABASE_NAME}} containerName=${{env.CONTAINER_NAME}}  # Set this to the location of your parameters file
+          parameters: repo/templates/azuredeploy.parameters.json  webappName=${{env.AZURE_WEBAPP_NAME}} aspName=${{env.ASP_NAME}} accountName=${{env.DATABASE_ACCOUNT_NAME}} databaseName=${{env.DATABASE_NAME}} containerName=${{env.CONTAINER_NAME}}  # Set this to the location of your parameters file
  
 #TODO: Once the infrastructure got created, download web app publish profile of the staging slot and add it as a secret to the repo. It will be used by the workflow.yml file. 

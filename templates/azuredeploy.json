@@ -157,7 +157,7 @@
                 "id": "[parameters('containerName')]",
                 "partitionKey": {
                   "paths": [
-                    "/myPartitionKey"
+                    "/country"
                   ],
                   "kind": "Hash"
                 },
