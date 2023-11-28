@@ -7,14 +7,12 @@ on:
 
 env:
     AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}    # set this to your Azure Subscription Id
-    AZURE_RESOURCEGROUP_NAME: aasRG                      # set this to your preferred resource group name
-    AZURE_WEBAPP_NAME: aas02-gh-web                          # set this to your preferred web app name
-    ASP_NAME: aas02-gh                  # for the farm to run
-    AZUER_KEY_VAULT: ${{ secrets.KEY_VAULT_NAME  }}                       # set this to your preferred key valult and store cs
-    SQLSERVER_NAME: aas02-webappsql-gh-actions-srv                          # set this to your preferred sql server name
-    DATABASE_NAME: aas02-webappsql-gh-actions-db                   # set this to your preferred sql database name
-    SQLADMIN_LOGIN: ${{ secrets.SQLADMIN_LOGIN  }}                # Create a secret in your Github repo for the SQL Admin login name you want to use
-    SQLADMIN_PASS: ${{ secrets.SQLADMIN_PASS  }}                 # Create a secret in your Github repo for the SQL Admin password you want to use
+    AZURE_RESOURCEGROUP_NAME: ${{ secrets.AZURE_RG_NAME  }}                        # set this to your preferred resource group name
+    AZURE_WEBAPP_NAME:  ${{ secrets.AZURE_WEBAPP_NAME  }}                         # set this to your preferred web app name ->   
+    ASP_NAME: ${{ secrets.AZURE_ASP_NAME  }}                   # for the farm to run   -> 
+    CONTAINER_NAME: ${{ secrets.COSMOSDB_CONTAINER_NAME  }}                          # set this to your preferred 
+    DATABASE_NAME: ${{ secrets.COSMOSDB_DB_NAME  }}                 # set this to your preferred 
+
 
 permissions:
   id-token: write
@@ -43,17 +41,6 @@ jobs:
           path: repo
           
       # Deployment of template    
-    #  - name: Deploy ARM Template resourcegroup
-    #    uses: azure/arm-deploy@v1
-    #    with:
-    #      # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID
-    #      scope: subscription
-    #      subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
-    #      region: westeurope # Set this to your target region
-    #      template: repo/templates/azuredeploy.resourcegroup.json  # Set this to the location of your template file
-    #      parameters: repo/templates/azuredeploy.resourcegroup.parameters.json rgName=${{env.AZURE_RESOURCEGROUP_NAME}} #override rgName in parameters file
-
-      # Deployment of template    
       - name: Deploy ARM Template resources
         uses: azure/arm-deploy@v1
         with:
@@ -63,6 +50,6 @@ jobs:
           resourceGroupName: ${{env.AZURE_RESOURCEGROUP_NAME}}
           region: westeurope # Set this to your target region
           template: repo/templates/azuredeploy.json  # Set this to the location of your template file
-          parameters: repo/templates/azuredeploy.parameters.json vaultName="${{env.AZUER_KEY_VAULT}}" webappName=${{env.AZURE_WEBAPP_NAME}} aspName=${{env.ASP_NAME}} sqlServerName=${{env.SQLSERVER_NAME}} databaseName=${{env.DATABASE_NAME}} sqlAdminLogin=${{env.SQLADMIN_LOGIN}} sqlAdminPass=${{env.SQLADMIN_PASS}} # Set this to the location of your parameters file
+          parameters: repo/templates/azuredeploy.parameters.json  webappName=${{env.AZURE_WEBAPP_NAME}} aspName=${{env.ASP_NAME}} databaseName=${{env.DATABASE_NAME}} containerName=${{env.CONTAINER_NAME}}  # Set this to the location of your parameters file
  
 #TODO: Once the infrastructure got created, download web app publish profile of the staging slot and add it as a secret to the repo. It will be used by the workflow.yml file. 
