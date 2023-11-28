@@ -62,14 +62,14 @@ jobs:
 
       - name: get account key and endpoint
         run: |
-          COSMODB_END_POINT=$(az cosmosdb show --name ${{ env.DATABASE_ACCOUNT_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --query "documentEndpoint")
-          COSMODB_Account_Key=$(az cosmosdb keys list --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --name ${{ env.DATABASE_ACCOUNT_NAME }} --query "primaryMasterKey")
+          COSMODB_END_POINT=$(az cosmosdb show --name ${{ env.DATABASE_ACCOUNT_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --query "documentEndpoint -o tsv")
+          COSMODB_Account_Key=$(az cosmosdb keys list --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --name ${{ env.DATABASE_ACCOUNT_NAME }} --query "primaryMasterKey -o tsv")
 
       - name:  add app settings in Azure App Service 
         run: |
-           az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings "Cosmos__AccountEndpoint"="${{ env.COSMODB_END_POINT }}"
-           az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings "Cosmos__AccountKey"="${{ env.COSMODB_Account_Key }}"
-           az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings "Cosmos__DatabaseName"="${{ env.DATABASE_NAME }}"
+           az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings "Cosmos:AccountEndpoint"="${{ env.COSMODB_END_POINT }}"
+           az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings "Cosmos:AccountKey"="${{ env.COSMODB_Account_Key }}"
+           az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings "Cosmos:DatabaseName"="${{ env.DATABASE_NAME }}"
 
 
       # Deploy to Azure Web apps staging slot
