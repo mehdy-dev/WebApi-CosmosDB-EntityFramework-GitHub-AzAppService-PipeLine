@@ -62,7 +62,7 @@ jobs:
 
       - name: get account key and endpoint
         run: |
-          COSMODB_END_POINT=$(az cosmosdb show --name ${{ env.AZURE_RESOURCEGROUP_NAME }} --resource-group ${{ env.DATABASE_ACCOUNT_NAME }} --query "documentEndpoint")
+          COSMODB_END_POINT=$(az cosmosdb show --name ${{ env.DATABASE_ACCOUNT_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --query "documentEndpoint")
           COSMODB_Account_Key=$(az cosmosdb keys list --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --name ${{ env.DATABASE_ACCOUNT_NAME }} --query "primaryMasterKey")
 
       - name:  add app settings in Azure App Service 
