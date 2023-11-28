@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Threading.Tasks;
 
 namespace IPTVDirectoryApiCosmosDB
 {
@@ -59,10 +60,21 @@ namespace IPTVDirectoryApiCosmosDB
 
             app.UseAuthorization();
 
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapGet("/", context =>
+                {
+                    return Task.Run(() => context.Response.Redirect("/api/channel"));
+                });
             });
+
         }
     }
 }
