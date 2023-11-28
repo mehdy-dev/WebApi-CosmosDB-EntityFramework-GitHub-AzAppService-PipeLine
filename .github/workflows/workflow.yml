@@ -67,7 +67,7 @@ jobs:
 
       - name:  add app settings in Azure App Service 
         run: |
-           az webapp config appsettings set --name ${{ env.ASP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --% --settings '{"Cosmos": {"AccountEndpoint": "${{ env.COSMODB_END_POINT }}", "AccountKey": "${{ env.COSMODB_Account_Key }}","DatabaseName": ""${{ env.DATABASE_NAME }}""}}'
+           az webapp config appsettings set --name ${{ env.ASP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings '{"Cosmos": {"AccountEndpoint": "${{ env.COSMODB_END_POINT }}", "AccountKey": "${{ env.COSMODB_Account_Key }}","DatabaseName": ""${{ env.DATABASE_NAME }}""}}'
 
 
       # Deploy to Azure Web apps staging slot
