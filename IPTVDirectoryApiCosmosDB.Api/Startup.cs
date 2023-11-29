@@ -60,13 +60,19 @@ namespace IPTVDirectoryApiCosmosDB
 
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
 
+            if (env.IsDevelopment())
+            {
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
+            }
+            else { 
             app.UseEndpoints(endpoints =>
             {
+
+
                 endpoints.MapDefaultControllerRoute();
 
                 endpoints.MapGet("/", context =>
@@ -74,6 +80,7 @@ namespace IPTVDirectoryApiCosmosDB
                     return Task.Run(() => context.Response.Redirect("/api/channel"));
                 });
             });
+                }
 
         }
     }
