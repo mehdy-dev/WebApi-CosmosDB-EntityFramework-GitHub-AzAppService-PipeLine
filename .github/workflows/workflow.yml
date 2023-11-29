@@ -72,6 +72,7 @@ jobs:
            az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings "Cosmos:AccountEndpoint"="${{ env.COSMODB_END_POINT }}"
            az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings "Cosmos:AccountKey"="${{ env.COSMODB_Account_Key }}"
            az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings "Cosmos:DatabaseName"="${{ env.DATABASE_NAME }}"
+           az webapp config appsettings set --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --settings ASPNETCORE_ENVIRONMENT=Development
 
 
       # Deploy to Azure Web apps staging slot
@@ -82,7 +83,6 @@ jobs:
           slot-name: production
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
           package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
-          custom: '— launch-profile IPTVDirectoryApiCosmosDB_Development'  # Add your custom run switches here
 
 
 
