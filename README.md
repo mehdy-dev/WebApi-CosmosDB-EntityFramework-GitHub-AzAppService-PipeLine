@@ -8,6 +8,11 @@ products:
 languages:
 - dotnet
 ---
+
+# ASP.NET Core and Azure Cosmo DB NoSQL Api for GitHub Actions
+
+This repo contains a sample ASP.NET Core web application which uses an Azure Cosmo DB NoSQL as a backend. The web app can be deployed to Azure Web Apps by using GitHub Actions. The workflow for this is already present in the [.github](.github) folder.
+
 # technologies used :
 
 * .netCore web api and swagger
@@ -46,18 +51,22 @@ az rest --method POST --uri 'https://graph.microsoft.com/beta/applications/<APPL
 ```
 find the detailed ateps here - > https://learn.microsoft.com/en-us/azure/app-service/app-service-sql-asp-github-actions
 
-6 - Add Arm Template to your project
+6 - Deploy Arm Template to your azure subscription
+7- need to add secrets to github repo in the ARM template accoding to your environement 
 
+## Advantages of having a fully managed pipeline 
 
-# ASP.NET Core and Azure Cosmo DB NoSQL Api for GitHub Actions
-
-This repo contains a sample ASP.NET Core web application which uses an Azure Cosmo DB NoSQL as a backend. The web app can be deployed to Azure Web Apps by using GitHub Actions. The workflow for this is already present in the [.github](.github) folder.
-
-## Setup an end-to-end CI/CD workflow
-
-License
+* 1- application configuration like cosmosDB end point and key will be added to app service during pipeline workflow and no hard coded neede nor they will be exposed in source code
+* 2- Resources will be created automatically
+* 3- CosmoDB initializer Context will check if model has been changed then start seeding containers
+      _db_model_changed = this.Database.EnsureCreated();
+* 4- you can add your own custom collection or DB seed without imppacting the current code
+* 5- migration to new azure env will be fast and simple
+* 6- you may costomize the seed in the same db context class
+* 7- build json file will seed data into db, you can add more costomized files for different collections 
+* and many more ...
 
 Acknowledgments
 Good Article how to use entity frame work and cosmosDB : https://medium.com/@kevinwilliams.dev/ef-core-cosmos-db-3da250b47d6c
-Use Git action and ARM template to deploy webapp into azure app service 
+[Use Git action and ARM template to deploy webapp into azure app service ](https://learn.microsoft.com/en-us/azure/app-service/app-service-sql-asp-github-actions)https://learn.microsoft.com/en-us/azure/app-service/app-service-sql-asp-github-actions
 
