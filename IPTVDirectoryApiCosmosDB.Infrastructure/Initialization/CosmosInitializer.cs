@@ -81,7 +81,7 @@ namespace IPTVDirectoryApiCosmosDB.Infrastructure.Initialization
 
             // Read and deserialize JSON content
             List<JsonChannel> channels = new List<JsonChannel>();
-            channels = ReadJsonFile<List<JsonChannel>>(jsonFilePath);
+            channels =  ReadJsonFile<List<JsonChannel>>(jsonFilePath);
 
             //// Display the deserialized data
             //foreach (var ch in channels)
