@@ -27,9 +27,17 @@ namespace IPTVDirectoryApiCosmosDB.Infrastructure.Contexts
                 .ToContainer("Channels")
                 .HasPartitionKey(c => c.country)
                 .HasNoDiscriminator();
-
+            /*
+                it is necessary to use conversion otherwise we cannot add it to db set when trying to save the cosmo db 
+                context will reject saving and says it should be string value
+            */
+            /*
+                AutoGenerator is not mandatory as cosmodb will generate it automatically 
+            */
             modelBuilder.Entity<Channel>()
-                .Property(c => c.id).HasConversion<string>();
+                .Property(c => c.id)
+                .HasConversion<string>();
+            //    .HasValueGenerator<SequentialGuidValueGenerator>();
 
 
         }
