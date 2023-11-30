@@ -8,8 +8,7 @@ namespace IPTVDirectoryApiCosmosDB.Core.Entities
     public record BaseEntity
     {
         [Key]
-        [JsonPropertyName("Id")]
-       public Guid Id { get; set; }
+       public Guid id { get; set; }
 
     }
 }

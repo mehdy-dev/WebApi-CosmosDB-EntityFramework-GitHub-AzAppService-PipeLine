@@ -117,11 +117,11 @@ namespace IPTVDirectoryApiCosmosDB.Infrastructure.Initialization
             {
                 Guid guid;
                 do { guid = Guid.NewGuid(); }
-                while (channels.Any(c => c.Id == guid));
+                while (channels.Any(c => c.id == guid));
 
 
                 Channel channel = new Channel {
-                    Id = guid,
+                    id = guid,
                     tv_id = chJ.tv_id,
                     tv_name = chJ.tv_name,
                     url = chJ.url,

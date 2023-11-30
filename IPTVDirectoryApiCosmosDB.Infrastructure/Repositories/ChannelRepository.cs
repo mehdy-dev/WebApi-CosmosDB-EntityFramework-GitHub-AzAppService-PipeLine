@@ -28,7 +28,7 @@ namespace IPTVDirectoryApiCosmosDB.Infrastructure.Repositories
             //Console.WriteLine($"Object Identifier of ChannelDbContext ChannelRepository : {_context.ContextId}");
             ////## check the db context for diffferent session 
 
-            //var Channel =  await this._context.Set<Channel>().FindAsync(id.ToString(), cancellationToken);
+           // var Channel =  await this._context.Set<Channel>().FindAsync(id, cancellationToken);
             var Channel = await this._context.Set<Channel>().FindAsync(id);
 
             Channel ch;
@@ -38,7 +38,7 @@ namespace IPTVDirectoryApiCosmosDB.Infrastructure.Repositories
             {
                  ch = new Channel
                 {
-                    Id = id,
+                    id = id,
                     tv_id = Channel.tv_id,
                     tv_name = Channel.tv_name,
                     url = Channel.url,
@@ -51,7 +51,7 @@ namespace IPTVDirectoryApiCosmosDB.Infrastructure.Repositories
             {
                 ch = new Channel
                 {
-                    Id = id,
+                    id = id,
                     tv_id = "not found",
                     tv_name = "not found",
                     url = "not found",

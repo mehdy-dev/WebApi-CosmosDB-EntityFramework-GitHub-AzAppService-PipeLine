@@ -29,7 +29,7 @@ namespace IPTVDirectoryApiCosmosDB.Infrastructure.Contexts
                 .HasNoDiscriminator();
 
             modelBuilder.Entity<Channel>()
-                .Property(c => c.Id).HasConversion<string>();
+                .Property(c => c.id).HasConversion<string>();
 
 
         }
